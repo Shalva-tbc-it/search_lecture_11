@@ -1,7 +1,7 @@
 package com.example.search
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.search.databinding.ActivityMainBinding
 import com.example.search.fragments.HomePageFragment
 

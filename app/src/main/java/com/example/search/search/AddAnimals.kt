@@ -28,7 +28,7 @@ class AddPets : AddAnimals() {
             ),
             Animals(
                 imageUrl = "https://img.kwcdn.com/product/Fancyalgo/VirtualModelMatting/75f127ce59e2f48be7d8e8e90bea0166.jpg?imageView2/2/w/800/q/70/format/webp",
-                title = "Lion",
+                title = "Cat",
                 desc = desc
             ),
             Animals(

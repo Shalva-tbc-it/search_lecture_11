@@ -10,16 +10,17 @@ import com.example.search.databinding.RecyclerviewPetsBinding
 import com.squareup.picasso.Picasso
 import java.util.Locale
 
-class PetsRecyclerViewAdapter(val listener: (Animals) -> Unit): ListAdapter<Animals, PetsRecyclerViewAdapter.PetsViewHolder>( object :
-    DiffUtil.ItemCallback<Animals>() {
-    override fun areItemsTheSame(oldItem: Animals, newItem: Animals): Boolean {
-        return oldItem.id == newItem.id
-    }
+class PetsRecyclerViewAdapter(val listener: (Animals) -> Unit) :
+    ListAdapter<Animals, PetsRecyclerViewAdapter.PetsViewHolder>(object :
+        DiffUtil.ItemCallback<Animals>() {
+        override fun areItemsTheSame(oldItem: Animals, newItem: Animals): Boolean {
+            return oldItem.id == newItem.id
+        }
 
-    override fun areContentsTheSame(oldItem: Animals, newItem: Animals): Boolean {
-        return oldItem == newItem
-    }
-}) {
+        override fun areContentsTheSame(oldItem: Animals, newItem: Animals): Boolean {
+            return oldItem == newItem
+        }
+    }) {
 
     private var originalList: List<Animals> = emptyList()
     fun setData(animals: MutableList<Animals>) {
@@ -48,7 +49,9 @@ class PetsRecyclerViewAdapter(val listener: (Animals) -> Unit): ListAdapter<Anim
     override fun onBindViewHolder(holder: PetsViewHolder, position: Int) {
         holder.bind()
     }
-    inner class PetsViewHolder(private val binding: RecyclerviewPetsBinding) : RecyclerView.ViewHolder(binding.root) {
+
+    inner class PetsViewHolder(private val binding: RecyclerviewPetsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
 
         fun bind() {
             val pets = currentList[adapterPosition]
@@ -57,6 +60,10 @@ class PetsRecyclerViewAdapter(val listener: (Animals) -> Unit): ListAdapter<Anim
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_foreground)
                 .into(binding.imgRcPets)
+
+            binding.root.setOnClickListener {
+                listener(pets)
+            }
         }
     }
 }

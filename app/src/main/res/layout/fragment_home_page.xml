@@ -23,6 +23,7 @@
         android:hint="@string/pets"
         android:layout_marginTop="30dp"
         android:textColor="@color/black"
+        android:inputType="text"
         android:textSize="18sp"
         android:background="@drawable/corner"
         android:padding="10dp"/>

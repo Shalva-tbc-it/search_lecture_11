@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.search.R
 import com.example.search.databinding.FragmentHomePageBinding
 import com.example.search.search.AddPets
 import com.example.search.search.PetsRecyclerViewAdapter
@@ -14,10 +15,10 @@ import com.example.search.search.PetsRecyclerViewAdapter
 class HomePageFragment : Fragment() {
 
     private lateinit var adapter: PetsRecyclerViewAdapter
-    private var _binding: FragmentHomePageBinding? = null
     private val addPets = AddPets()
     private val animalList = addPets.sendDataToDataClass()
 
+    private var _binding: FragmentHomePageBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,9 +37,20 @@ class HomePageFragment : Fragment() {
 
     private fun recyclerViewInit() = with(binding) {
 
-
         adapter = PetsRecyclerViewAdapter( listener = {
 
+            val bundle = Bundle()
+
+            bundle.putParcelable("pet", it)
+
+
+            val fragment = PetInfoFragment()
+            fragment.arguments = bundle
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.container, PetInfoFragment())
+                .addToBackStack("Info")
+                .commit()
         })
         rcPets.layoutManager = GridLayoutManager(context, 3)
         rcPets.adapter = adapter
@@ -47,6 +59,7 @@ class HomePageFragment : Fragment() {
     }
 
     private fun listener() = with(binding){
+
         edSearch.doOnTextChanged { text, _, _, _ ->
             adapter.filter(text.toString())
         }
