@@ -59,6 +59,11 @@ class HomePageFragment : Fragment() {
 
         edSearch.doOnTextChanged { text, _, _, _ ->
             adapter.filter(text.toString())
+            if (text.isNullOrEmpty()) {
+                tvResult.text = getString(R.string.all_result)
+            }else {
+                tvResult.text = "RESULT: $text"
+            }
         }
 
     }
