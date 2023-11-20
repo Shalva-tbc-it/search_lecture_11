@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="10dp"
     tools:context=".fragments.HomePageFragment">
@@ -10,23 +11,23 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="32sp"
         android:layout_marginTop="20dp"
-        android:textColor="@color/black"
         android:fontFamily="sans-serif"
-        android:text="@string/search"/>
+        android:text="@string/search"
+        android:textColor="@color/black"
+        android:textSize="32sp" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/pets"
         android:layout_marginTop="30dp"
-        android:textColor="@color/black"
-        android:inputType="text"
-        android:textSize="18sp"
         android:background="@drawable/corner"
-        android:padding="10dp"/>
+        android:hint="@string/pets"
+        android:inputType="text"
+        android:padding="10dp"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvResult"
@@ -34,17 +35,15 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:fontFamily="sans-serif-black"
-        android:textSize="14sp"
+        android:text="@string/all_result"
         android:textColor="@color/black"
-        android:text="@string/all_result"/>
+        android:textSize="14sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcPets"
         android:layout_width="match_parent"
-        android:layout_marginTop="15dp"
-        android:layout_height="match_parent"/>
-
-
+        android:layout_height="match_parent"
+        android:layout_marginTop="15dp" />
 
 
 </androidx.appcompat.widget.LinearLayoutCompat>

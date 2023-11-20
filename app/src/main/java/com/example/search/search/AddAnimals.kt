@@ -116,10 +116,24 @@ class AddPets : AddAnimals() {
                 title = "Cat",
                 desc = desc
             ),
-
             Animals(
                 imageUrl = "https://images.pexels.com/photos/2194261/pexels-photo-2194261.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
                 title = "Cat",
+                desc = desc
+            ),
+            Animals(
+                imageUrl = "https://images.pexels.com/photos/3726314/pexels-photo-3726314.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title = "Dog",
+                desc = desc
+            ),
+            Animals(
+                imageUrl = "https://images.pexels.com/photos/4681107/pexels-photo-4681107.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title = "Dog",
+                desc = desc
+            ),
+            Animals(
+                imageUrl = "https://images.pexels.com/photos/16149937/pexels-photo-16149937/free-photo-of-lion-standing-under-wall-of-zoo-enclosure.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title = "Lion",
                 desc = desc
             )
         )

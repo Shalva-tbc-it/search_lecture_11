@@ -32,23 +32,30 @@ class PetInfoFragment : Fragment() {
     }
 
     private fun getPetInfo() {
-        val data = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arguments?.getParcelable("pet", Animals::class.java)
-        } else {
+        parentFragmentManager.setFragmentResultListener(
+            "requestKey",
+            viewLifecycleOwner
+        ) { _, bundle ->
 
-            arguments?.getParcelable("pet")
+            val result =
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    bundle.getParcelable("bundleKey", Animals::class.java)
+                } else {
+                    bundle.getParcelable("bundleKey")
+                }
+
+            result?.let {
+                Picasso.get()
+                    .load(it.imageUrl)
+                    .placeholder(R.drawable.loading)
+                    .error(R.drawable.error)
+                    .into(binding.imgInfo)
+
+                binding.tvTitle.text = it.title
+                binding.tvDesc.text = getString(it.desc)
+
+            }
         }
-
-        data?.let {
-            Picasso.get()
-                .load(it.imageUrl)
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(binding.imgInfo)
-
-            binding.tvTitle.text = it.title
-        }
-
     }
 
 

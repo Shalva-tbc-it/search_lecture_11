@@ -57,8 +57,8 @@ class PetsRecyclerViewAdapter(val listener: (Animals) -> Unit) :
             val pets = currentList[adapterPosition]
             Picasso.get()
                 .load(pets.imageUrl)
-                .placeholder(R.drawable.ic_launcher_background)
-                .error(R.drawable.ic_launcher_foreground)
+                .placeholder(R.drawable.loading)
+                .error(R.drawable.error)
                 .into(binding.imgRcPets)
 
             binding.root.setOnClickListener {
