@@ -1,21 +1,23 @@
 package com.example.search.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.search.R
 import com.example.search.databinding.FragmentHomePageBinding
 import com.example.search.search.AddPets
-import com.example.search.search.Animals
 import com.example.search.search.PetsRecyclerViewAdapter
 
 class HomePageFragment : Fragment() {
 
     private lateinit var adapter: PetsRecyclerViewAdapter
     private var _binding: FragmentHomePageBinding? = null
+    private val addPets = AddPets()
+    private val animalList = addPets.sendDataToDataClass()
+
     private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,18 +31,26 @@ class HomePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerViewInit()
-
+        listener()
     }
 
     private fun recyclerViewInit() = with(binding) {
-        val addPets = AddPets()
-        val animalList = addPets.sendDataToDataClass()
 
-        adapter = PetsRecyclerViewAdapter()
+
+        adapter = PetsRecyclerViewAdapter( listener = {
+
+        })
         rcPets.layoutManager = GridLayoutManager(context, 3)
-        rcPets.adapter = PetsRecyclerViewAdapter().apply {
-            submitList(animalList)
+        rcPets.adapter = adapter
+        adapter.setData(animalList.toMutableList())
+
+    }
+
+    private fun listener() = with(binding){
+        edSearch.doOnTextChanged { text, _, _, _ ->
+            adapter.filter(text.toString())
         }
+
     }
 
 
