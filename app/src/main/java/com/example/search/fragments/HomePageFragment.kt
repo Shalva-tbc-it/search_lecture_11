@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.core.widget.doOnTextChanged
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.search.R
@@ -57,17 +57,16 @@ class HomePageFragment : Fragment() {
 
     private fun listener() = with(binding){
 
-        edSearch.doOnTextChanged { text, _, _, _ ->
-            adapter.filter(text.toString())
-            if (text.isNullOrEmpty()) {
+        edSearch.addTextChangedListener {
+            adapter.filter(it.toString())
+            if (it.isNullOrEmpty()) {
                 tvResult.text = getString(R.string.all_result)
             }else {
-                tvResult.text = "RESULT: $text"
+                tvResult.text = "RESULT: $it"
             }
         }
 
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
